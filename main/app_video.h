@@ -24,8 +24,8 @@ typedef enum {
     APP_VIDEO_FMT_YUV420 = V4L2_PIX_FMT_YUV420,
 } video_fmt_t;
 
-#define EXAMPLE_CAM_DEV_PATH                (ESP_VIDEO_MIPI_CSI_DEVICE_NAME)
-#define EXAMPLE_CAM_BUF_NUM                 (CONFIG_EXAMPLE_CAM_BUF_COUNT)
+#define APP_CAM_DEV_PATH                (ESP_VIDEO_MIPI_CSI_DEVICE_NAME)
+#define APP_CAM_BUF_NUM                 (CONFIG_MANGO_CAM_BUF_COUNT)
 
 #if CONFIG_LCD_PIXEL_FORMAT_RGB565
 #define APP_VIDEO_FMT              (APP_VIDEO_FMT_RGB565)

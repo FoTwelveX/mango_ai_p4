@@ -37,7 +37,7 @@
 │   ├── ai_model.cpp/h      # esp-dl 模型加载、推理与结果反量化（三分类）
 │   ├── app_lcd.c/h         # MIPI-DSI LCD 面板初始化（EK79007）
 │   ├── app_video.c/h       # esp_video 摄像头设备封装（V4L2 风格接口）
-│   ├── Kconfig.projbuild   # menuconfig 示例配置项
+│   ├── Kconfig.projbuild   # menuconfig 项目配置项（Mango AI Configuration）
 │   └── idf_component.yml   # 依赖：esp_video、esp_lcd_ek79007、esp-dl
 ├── models/
 │   ├── mango_cnn.pth       # PyTorch 原始权重
@@ -90,7 +90,7 @@ idf.py -p COMx flash monitor
 
 运行 `idf.py menuconfig`：
 
-- **Example Configuration**：摄像头 SCCB I2C 引脚、帧率打印、缓冲区分配方式（内存映射 / 用户分配）、摄像头缓冲区数量、LCD 像素格式（RGB565 / RGB888）、画面翻转等
+- **Mango AI Configuration**：摄像头 SCCB I2C 引脚、帧率打印、缓冲区分配方式（内存映射 / 用户分配）、摄像头缓冲区数量、LCD 像素格式（RGB565 / RGB888）、画面翻转等
 - **Component config → Espressif Camera Sensors**：选择摄像头型号及输出格式，本项目默认：
 
 ```

@@ -13,10 +13,10 @@
 
 static const char *TAG = "app_lcd";
 
-#define EXAMPLE_LDO_MIPI_CHAN               (3)
-#define EXAMPLE_LDO_MIPI_VOLTAGE_MV         (2500)
+#define APP_LDO_MIPI_CHAN               (3)
+#define APP_LDO_MIPI_VOLTAGE_MV         (2500)
 
-#define EXAMPLE_PIN_NUM_LCD_RST             (27)
+#define APP_PIN_NUM_LCD_RST             (27)
 
 static esp_lcd_dsi_bus_handle_t mipi_dsi_bus;
 static esp_lcd_panel_io_handle_t mipi_dbi_io;
@@ -26,8 +26,8 @@ static void lcd_ldo_power_on(void)
 {
     esp_ldo_channel_handle_t ldo_mipi_phy = NULL;
     esp_ldo_channel_config_t ldo_mipi_phy_config = {
-        .chan_id = EXAMPLE_LDO_MIPI_CHAN,
-        .voltage_mv = EXAMPLE_LDO_MIPI_VOLTAGE_MV,
+        .chan_id = APP_LDO_MIPI_CHAN,
+        .voltage_mv = APP_LDO_MIPI_VOLTAGE_MV,
     };
     ESP_ERROR_CHECK(esp_ldo_acquire_channel(&ldo_mipi_phy_config, &ldo_mipi_phy));
 }
@@ -45,8 +45,8 @@ esp_err_t app_lcd_init(esp_lcd_panel_handle_t *panel_handle)
     ESP_ERROR_CHECK(esp_lcd_new_panel_io_dbi(mipi_dsi_bus, &dbi_config, &mipi_dbi_io));
 
     ESP_LOGI(TAG, "Install LCD driver of ek79007");
-    esp_lcd_dpi_panel_config_t dpi_config = EK79007_1024_600_PANEL_60HZ_CONFIG(EXAMPLE_MIPI_DPI_PX_FORMAT);
-    dpi_config.num_fbs = EXAMPLE_LCD_BUF_NUM;
+    esp_lcd_dpi_panel_config_t dpi_config = EK79007_1024_600_PANEL_60HZ_CONFIG(APP_MIPI_DPI_PX_FORMAT);
+    dpi_config.num_fbs = APP_LCD_BUF_NUM;
     ek79007_vendor_config_t vendor_config = {
         .mipi_config = {
             .dsi_bus = mipi_dsi_bus,
@@ -54,9 +54,9 @@ esp_err_t app_lcd_init(esp_lcd_panel_handle_t *panel_handle)
         },
     };
     const esp_lcd_panel_dev_config_t panel_config = {
-        .reset_gpio_num = EXAMPLE_PIN_NUM_LCD_RST,
+        .reset_gpio_num = APP_PIN_NUM_LCD_RST,
         .rgb_ele_order = LCD_RGB_ELEMENT_ORDER_RGB,
-        .bits_per_pixel = EXAMPLE_LCD_BIT_PER_PIXEL,
+        .bits_per_pixel = APP_LCD_BIT_PER_PIXEL,
         .vendor_config = &vendor_config,
     };
     ESP_ERROR_CHECK(esp_lcd_new_panel_ek79007(mipi_dbi_io, &panel_config, &display_handle));

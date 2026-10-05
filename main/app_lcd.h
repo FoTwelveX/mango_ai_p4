@@ -6,17 +6,17 @@
 #ifndef APP_LCD_H
 #define APP_LCD_H
 
-#define EXAMPLE_LCD_H_RES                   (1024)
-#define EXAMPLE_LCD_V_RES                   (600)
+#define APP_LCD_H_RES                   (1024)
+#define APP_LCD_V_RES                   (600)
 
-#define EXAMPLE_LCD_BUF_NUM                 (CONFIG_EXAMPLE_CAM_BUF_COUNT)
+#define APP_LCD_BUF_NUM                 (CONFIG_MANGO_CAM_BUF_COUNT)
 
 #if CONFIG_LCD_PIXEL_FORMAT_RGB565
-#define EXAMPLE_LCD_BIT_PER_PIXEL           (16)
-#define EXAMPLE_MIPI_DPI_PX_FORMAT          (LCD_COLOR_PIXEL_FORMAT_RGB565)
+#define APP_LCD_BIT_PER_PIXEL           (16)
+#define APP_MIPI_DPI_PX_FORMAT          (LCD_COLOR_PIXEL_FORMAT_RGB565)
 #elif CONFIG_LCD_PIXEL_FORMAT_RGB888
-#define EXAMPLE_LCD_BIT_PER_PIXEL           (24)
-#define EXAMPLE_MIPI_DPI_PX_FORMAT          (LCD_COLOR_PIXEL_FORMAT_RGB888)
+#define APP_LCD_BIT_PER_PIXEL           (24)
+#define APP_MIPI_DPI_PX_FORMAT          (LCD_COLOR_PIXEL_FORMAT_RGB888)
 #endif
 
 /**
