@@ -262,14 +262,10 @@ static inline esp_err_t video_receive_video_frame(int video_fd)
 
     int res = ioctl(video_fd, VIDIOC_DQBUF, &(app_camera_video.v4l2_buf));
     if (res != 0) {
-        ESP_LOGE(TAG, "failed to receive video frame");
-        goto errout;
+        return ESP_FAIL;
     }
 
     return ESP_OK;
-
-errout:
-    return ESP_FAIL;
 }
 
 static inline void video_operation_video_frame(int video_fd)
@@ -344,9 +340,18 @@ errout:
 static void video_stream_task(void *arg)
 {
     int video_fd = *((int *)arg);
+    TickType_t last_receive_error_log = 0;
 
     while (1) {
-        ESP_ERROR_CHECK(video_receive_video_frame(video_fd));
+        if (video_receive_video_frame(video_fd) != ESP_OK) {
+            TickType_t now = xTaskGetTickCount();
+            if (last_receive_error_log == 0 || now - last_receive_error_log >= pdMS_TO_TICKS(1000)) {
+                ESP_LOGW(TAG, "failed to receive video frame; retrying");
+                last_receive_error_log = now;
+            }
+            vTaskDelay(pdMS_TO_TICKS(10));
+            continue;
+        }
 
         video_operation_video_frame(video_fd);
 

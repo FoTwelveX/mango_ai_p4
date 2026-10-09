@@ -787,7 +787,7 @@ CONFIG_PARTITION_TABLE_MD5=y
 # end of Partition Table
 
 #
-# Example Configuration
+# Mango AI Configuration
 #
 CONFIG_MANGO_ENABLE_MIPI_CSI_CAM_SENSOR=y
 CONFIG_MANGO_MIPI_CSI_SCCB_I2C_PORT=0
@@ -803,7 +803,7 @@ CONFIG_LCD_PIXEL_FORMAT_RGB565=y
 # CONFIG_LCD_PIXEL_FORMAT_RGB888 is not set
 CONFIG_MANGO_ENABLE_CAM_SENSOR_PIC_VFLIP=y
 CONFIG_MANGO_ENABLE_CAM_SENSOR_PIC_HFLIP=y
-# end of Example Configuration
+# end of Mango AI Configuration
 
 #
 # Compiler options
